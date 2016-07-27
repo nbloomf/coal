@@ -80,7 +80,7 @@ The syntax for embedding a range of cells is
 \begin{verbatim}
 \googleSheet{document-ID}{width}{height}{sheet-ID}{range-selector}
 \end{verbatim}
-where the only new argument, \texttt{range-selector}, is a pair of cell names separated by a colon, like \texttt{A3:A5} or \texttt{B1:D4}. Note that it only makes sense to interpret a range selector argument if we also have a sheet selector. So passing in a \texttt{range-selector} without a \texttt{sheet-ID} has no effect.
+where the only new argument, \texttt{range-selector}, is a pair of cell names separated by a colon, like \texttt{A3:A5} or \texttt{B1:D4}. Note that it only makes sense to interpret a range selector argument if we also have a sheet ID. So passing in a \texttt{range-selector} without a \texttt{sheet-ID} has no effect.
 
 For example, the command
 \begin{verbatim}
@@ -89,5 +89,7 @@ For example, the command
 produces the following:
 
 \googleSheet{16yym0ge5YWl_7i7BBsosd6ji9PNab5DWKnQLVjxJRDo}{400}{300}{0}{A2:A3}
+
+The End!
 
 \end{document}
