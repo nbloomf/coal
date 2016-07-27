@@ -23,7 +23,31 @@ The command for embedding a spreadsheet is \texttt{googleSheet}. It has 5 requir
 
 \subsection{Embedding a whole spreadsheet}
 
-The syntax is (BLAH), where \texttt{width} and \texttt{height} are the dimensions (in pixels) of the embedded spreadsheet on the page. If the spreadsheet is larger than this region, scrollbars will appear.
+The syntax is
+\begin{verbatim}
+\googleSheet{document-ID}{width}{height}{}{}
+\end{verbatim}
+where \texttt{width} and \texttt{height} are the dimensions (in pixels) of the embedded spreadsheet on the page. If the spreadsheet is larger than this region, scrollbars will appear. \texttt{document-ID} is the unique identifier of the shared spreadsheet. To find this value, open your spreadsheet and select \emph{Publish to the web} from the File menu. Go to the \emph{Embed} tab and select \emph{Entire document} in the drop-down menu. The text area now shows the embed URL; all we want is the document ID, which is the giant string of characters after \texttt{docs.google.com/spreadsheets/d/} and before the next slash.
+
+For example, the spreadsheet we linked to above has the entire-document-embed-URL
+
+\begin{verbatim}
+https://docs.google.com/spreadsheets/d/16yym0ge5YWl_7i7BBsosd6ji9PNab5DWKnQLVjxJRDo/pubhtml?widget=true&amp;headers=false"
+\end{verbatim}
+
+and the document ID is
+
+\begin{verbatim}
+16yym0ge5YWl_7i7BBsosd6ji9PNab5DWKnQLVjxJRDo
+\end{verbatim}
+
+Now to embed this spreadsheet. The command
+
+\begin{verbatim}
+\googleSheet{16yym0ge5YWl_7i7BBsosd6ji9PNab5DWKnQLVjxJRDo}{400}{300}{}{}
+\end{verbatim}
+
+Gives the following:
 
 \googleSheet{16yym0ge5YWl_7i7BBsosd6ji9PNab5DWKnQLVjxJRDo}{400}{300}{}{}
 
