@@ -63,7 +63,7 @@ and the sheet ID for Sheet 1 is
 \begin{verbatim}
 0
 \end{verbatim}
-Note that Sheet 1 always(?) has an ID of \texttt{0}, but subsequent IDs are not sequential. Sheet 2 in my example document has ID \texttt{2081259156}, because why not.
+Note that Sheet 1 always(?) has an ID of \texttt{0}, but subsequent IDs are not sequential. For instance Sheet 2 in my example document has ID \texttt{2081259156}, because why not.
 
 As an example, the command
 \begin{verbatim}
@@ -80,7 +80,7 @@ The syntax for embedding a range of cells is
 \begin{verbatim}
 \googleSheet{document-ID}{width}{height}{sheet-ID}{range-selector}
 \end{verbatim}
-where the only new argument, \texttt{range-selector}, is a pair of cell names separated by a colon.
+where the only new argument, \texttt{range-selector}, is a pair of cell names separated by a colon, like \texttt{A3:A5} or \texttt{B1:D4}.
 
 For example, the command
 \begin{verbatim}
