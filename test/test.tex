@@ -10,29 +10,29 @@
 \begin{document}
 \maketitle
 
-Let's embed some Google Spreadsheets!
+Let's embed some Google Spreadsheets! Note that these embedded spreadsheets are \textbf{Read Only}; this is a limitation of Google spreadsheets (as far as I can tell). However, they do update live -- or with a few minutes' delay -- so you can edit the master spreadsheet and any embedded copies will reflect the changes. That's nifty!
 
-First we need a google spreadsheet with some data in it. How about \link[this one]{https://docs.google.com/spreadsheets/d/16yym0ge5YWl_7i7BBsosd6ji9PNab5DWKnQLVjxJRDo/edit?usp=sharing}. Before we can embed a spreadsheet it must be \emph{published to the web} (the option for this is under the File menu).
+First we need a google spreadsheet with some data in it. How about \link[this one]{https://docs.google.com/spreadsheets/d/16yym0ge5YWl_7i7BBsosd6ji9PNab5DWKnQLVjxJRDo/edit?usp=sharing}. Before we can embed a spreadsheet it must be \textit{published to the web} (the option for this is under the File menu).
 
 The command for embedding a spreadsheet is \texttt{googleSheet}. It has 5 required arguments (two of which can be empty) and may be used in one of three ways:
 \begin{enumerate}
 \item To embed an entire multi-page spreadsheet document, with ``tabs'' for navigating between pages;
 \item To embed a single sheet, which does not include navigation tabs; and
-\item To embed only a \emph{range} of cells from a single sheet
+\item To embed only a \textit{range} of cells from a single sheet
 \end{enumerate}
 
 \subsection{Embedding a whole spreadsheet}
 
-The syntax is
+The syntax for embedding an entire spreadsheet is
 \begin{verbatim}
 \googleSheet{document-ID}{width}{height}{}{}
 \end{verbatim}
-where \texttt{width} and \texttt{height} are the dimensions (in pixels) of the embedded spreadsheet on the page. If the spreadsheet is larger than this region, scrollbars will appear. \texttt{document-ID} is the unique identifier of the shared spreadsheet. To find this value, open your spreadsheet and select \emph{Publish to the web} from the File menu. Go to the \emph{Embed} tab and select \emph{Entire document} in the drop-down menu. The text area now shows the embed URL; all we want is the document ID, which is the giant string of characters after \texttt{docs.google.com/spreadsheets/d/} and before the next slash.
+where \texttt{width} and \texttt{height} are the dimensions (in pixels) of the embedded spreadsheet on the page. If the spreadsheet is larger than this region, scrollbars will appear. \texttt{document-ID} is the unique identifier of the shared spreadsheet. To find this value, open your spreadsheet and select ``Publish to the web'' from the File menu. Go to the ``Embed'' tab and select ``Entire document'' in the drop-down menu. The text area now shows the embed URL; all we want is the document ID, which is the giant string of characters after \texttt{docs.google.com/spreadsheets/d/} and before the next slash.
 
 For example, the spreadsheet we linked to above has the entire-document-embed-URL
 
 \begin{verbatim}
-https://docs.google.com/spreadsheets/d/16yym0ge5YWl_7i7BBsosd6ji9PNab5DWKnQLVjxJRDo/pubhtml?widget=true&amp;headers=false"
+https://docs.google.com/spreadsheets/d/16yym0ge5YWl_7i7BBsosd6ji9PNab5DWKnQLVjxJRDo/pubhtml?widget=true&amp;headers=false
 \end{verbatim}
 
 and the document ID is
@@ -42,11 +42,9 @@ and the document ID is
 \end{verbatim}
 
 Now to embed this spreadsheet. The command
-
 \begin{verbatim}
 \googleSheet{16yym0ge5YWl_7i7BBsosd6ji9PNab5DWKnQLVjxJRDo}{400}{300}{}{}
 \end{verbatim}
-
 Gives the following:
 
 \googleSheet{16yym0ge5YWl_7i7BBsosd6ji9PNab5DWKnQLVjxJRDo}{400}{300}{}{}
@@ -54,10 +52,49 @@ Gives the following:
 
 \subsection{Embedding a single sheet}
 
+The syntax for embedding a single sheet is
+\begin{verbatim}
+\googleSheet{document-ID}{width}{height}{sheet-ID}{}
+\end{verbatim}
+where \texttt{document-ID}, \texttt{width}, and \texttt{height} are as defined above. \texttt{sheet-ID} is the unique identifier of the sheet you want to embed. To find this identifier, again choose ``Publish to the web'' in the File menu and select the ``Embed'' tab. This time select the sheet you want to embed in the drop-down menu. The text area now shows the embed URL, and the sheet identifier is the value of the \texttt{gid} key in this URL.
+
+For example, the embed url for Sheet 1 in our example document is 
+
+\begin{verbatim}
+https://docs.google.com/spreadsheets/d/16yym0ge5YWl_7i7BBsosd6ji9PNab5DWKnQLVjxJRDo/pubhtml?gid=0&amp;single=true&amp;widget=true&amp;headers=false
+\end{verbatim}
+
+and the sheet ID for Sheet 1 is
+
+\begin{verbatim}
+0
+\end{verbatim}
+
+Note that Sheet 1 always(?) has an ID of \texttt{0}, but subsequent IDs are not sequential. Sheet 2 in my example document has ID \texttt{2081259156}, because why not.
+
+As an example, the command
+\begin{verbatim}
+\googleSheet{16yym0ge5YWl_7i7BBsosd6ji9PNab5DWKnQLVjxJRDo}{400}{300}{0}{}
+\end{verbatim}
+produces the following:
+
 \googleSheet{16yym0ge5YWl_7i7BBsosd6ji9PNab5DWKnQLVjxJRDo}{400}{300}{0}{}
 
 
 \subsection{Embedding a range of cells from one sheet}
+
+The syntax for embedding a range of cells is
+\begin{verbatim}
+\googleSheet{document-ID}{width}{height}{sheet-ID}{range-selector}
+\end{verbatim}
+where the only new argument, \texttt{range-selector}, is a pair of cell names separated by a colon.
+
+For example, the command
+\begin{verbatim}
+\googleSheet{16yym0ge5YWl_7i7BBsosd6ji9PNab5DWKnQLVjxJRDo}{400}{300}{0}{A2:A3}
+\end{verbatim}
+
+produces the following:
 
 \googleSheet{16yym0ge5YWl_7i7BBsosd6ji9PNab5DWKnQLVjxJRDo}{400}{300}{0}{A2:A3}
 
