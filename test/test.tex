@@ -1,46 +1,40 @@
 \documentclass{ximera}
 
-\title{what is this i cant even}
-\author{Nathan}
+\title{Embedding google spreadsheets in a ximera document}
+\author{Nathan Bloomfield}
 
 \begin{abstract}
-  This is a test document!
+  wherein it is demonstrated how to do such of things of that
 \end{abstract}
 
 \begin{document}
 \maketitle
 
-Here's a sample question.
+Let's embed some Google Spreadsheets!
 
-\begin{problem}
-\begin{multipleChoice}
-\choice{Incorrect}
-\choice{Not this one!}
-\choice[correct]{Click here?}
-\choice{Not me!}
-\end{multipleChoice}
-\end{problem}
+First we need a google spreadsheet with some data in it. How about \url[this one]{https://docs.google.com/spreadsheets/d/16yym0ge5YWl_7i7BBsosd6ji9PNab5DWKnQLVjxJRDo/edit?usp=sharing}. Before we can embed a spreadsheet it must be \emph{published to the web} (the option for this is under the File menu).
 
-Let's try to embed a geogebratube widget:
+The command for embedding a spreadsheet is \texttt{googleSheet}. It has 5 required arguments (two of which can be empty) and may be used in one of three ways:
+\begin{enumerate}
+\item To embed an entire multi-page spreadsheet document, with ``tabs'' for navigating between pages;
+\item To embed a single sheet, which does not include navigation tabs; and
+\item To embed only a \emph{range} of cells from a single sheet
+\end{enumerate}
+
+\subsection{Embedding a whole spreadsheet}
+
+The syntax is \verb|\googleSheet{docID}{width}{height}{}{}|, where \texttt{width} and \texttt{height} are the dimensions (in pixels) of the embedded spreadsheet on the page. If the spreadsheet is larger than this region, scrollbars will appear.
 
 \googleSheet{16yym0ge5YWl_7i7BBsosd6ji9PNab5DWKnQLVjxJRDo}{400}{300}{}{}
 
+
+\subsection{Embedding a single sheet}
+
 \googleSheet{16yym0ge5YWl_7i7BBsosd6ji9PNab5DWKnQLVjxJRDo}{400}{300}{0}{}
 
+
+\subsection{Embedding a range of cells from one sheet}
+
 \googleSheet{16yym0ge5YWl_7i7BBsosd6ji9PNab5DWKnQLVjxJRDo}{400}{300}{0}{A2:A3}
-
-where does this text go? huh?
-
-\begin{problem}
-   You can check that $x + x = \answer{2x}$ or that $x \cdot x = \answer{x^2}$.
-\end{problem}
-
-\begin{problem}
-   The tolerance 0.01 means $\pi \approx \answer[tolerance=0.01]{3.141592653}$
-\end{problem}
-
-\begin{problem}
-   The tolerance 17 means $3421 \approx \answer[tolerance=17]{3421}$
-\end{problem}
 
 \end{document}
